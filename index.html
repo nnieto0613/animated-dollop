@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Slingers</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Matter.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+</head>
+<body>
+    <!-- Main Menu Screen -->
+    <div id="main-menu">
+        <h1 id="main-title">___Water Slingers--</h1>
+        <img id="jerrycan-img" src="img/water-can-transparent.png" alt="Charity Water Can" width="180" height="180" />
+        <button id="start-btn">Start Game</button>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" style="display:none;">
+        <div id="hud">
+            <button id="home-btn">Home</button>
+            <span id="score">Score: 0</span>
+            <button id="pause-btn">Pause</button>
+            <button id="settings-btn">Settings</button>
+            <button id="reset-btn">Reset</button>
+        </div>
+        <canvas id="game-canvas" style="width:100vw; height:auto;" ></canvas>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboard-modal" style="display:none;">
+        <h2>Leaderboard</h2>
+        <ol id="leaderboard-list"></ol>
+        <button id="close-leaderboard-btn">Close</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
