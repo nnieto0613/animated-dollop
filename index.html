@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Matter.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <!-- Proxima Nova font from Adobe Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/zdg4vdv.css">
+    <!-- If you have a local copy or a different CDN, add it here -->
 </head>
 <body>
     <!-- Main Menu Screen -->
@@ -14,6 +17,14 @@
         <h1 id="main-title">___Water Slingers--</h1>
         <img id="jerrycan-img" src="img/water-can-transparent.png" alt="Charity Water Can" width="180" height="180" />
         <button id="start-btn">Start Game</button>
+    </div>
+
+    <!-- Difficulty Selection Screen -->
+    <div id="difficulty-menu" style="display:none;">
+        <h2>Select Difficulty</h2>
+        <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+        <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+        <button class="difficulty-btn" data-difficulty="hard">Hard</button>
     </div>
 
     <!-- Game Screen -->

@@ -16,7 +16,7 @@ Secondary Colors:
 
 /* Layout styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "proxima-nova", Arial, sans-serif;
     background: #77A8BB;
     margin: 0;
     padding: 0;
@@ -160,10 +160,75 @@ button:hover {
     background: #FF902A;
 }
 
-/* Responsive adjustments for mobile */
-@media (max-width: 700px) {
+/* Difficulty menu styles */
+#difficulty-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #77A8BB;
+}
+
+.difficulty-btn {
+    background: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 14px 36px;
+    font-size: 1.3em;
+    border-radius: 8px;
+    margin: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.difficulty-btn:hover {
+    background: #FFC907;
+    color: #77A8BB;
+}
+
+/* Reload tube and drops above slingshot */
+#reload-tube-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#reload-tube {
+    position: absolute;
+    /* Will be positioned by JS */
+    background: #bbb;
+    border-radius: 20px;
+    width: 36px;
+    height: 120px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    border: 3px solid #888;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.reload-drop {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #77A8BB;
+    margin: 4px 0;
+    border: 2px solid #4FCB53;
+    background-image: url('img/water_drop.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Responsive adjustments for mobile and small screens */
+@media (max-width: 900px) {
     #main-title {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
     #jerrycan-img {
         width: 120px;
@@ -181,9 +246,82 @@ button:hover {
     }
     #game-canvas {
         min-height: 180px;
+        max-width: 100vw;
     }
     #leaderboard-modal {
         font-size: 0.95em;
         padding: 16px;
+        width: 96vw;
+        min-width: 0;
+        max-width: 99vw;
     }
+    #reload-tube {
+        width: 28px !important;
+        height: 120px !important;
+        border-radius: 14px !important;
+    }
+    #reload-tube-container {
+        width: 100vw;
+    }
+    #result-popup {
+        font-size: 1.1em !important;
+        padding: 18px 8px !important;
+        min-width: 0;
+        max-width: 95vw;
+    }
+}
+
+@media (max-width: 600px) {
+    #main-title {
+        font-size: 1.5rem;
+    }
+    #jerrycan-img {
+        width: 80px;
+        max-width: 100px;
+    }
+    #hud {
+        flex-direction: column;
+        gap: 6px;
+        padding: 0 2vw;
+    }
+    button, #home-btn, #pause-btn, #settings-btn, #reset-btn {
+        font-size: 0.9em;
+        padding: 8px 10px;
+        min-width: 50px;
+    }
+    #game-canvas {
+        min-height: 120px;
+        max-width: 100vw;
+    }
+    #leaderboard-modal {
+        font-size: 0.85em;
+        padding: 8px;
+        width: 99vw;
+        min-width: 0;
+        max-width: 100vw;
+    }
+    #reload-tube {
+        width: 18px !important;
+        height: 70px !important;
+        border-radius: 8px !important;
+    }
+    #reload-tube-container {
+        width: 100vw;
+    }
+    #result-popup {
+        font-size: 0.9em !important;
+        padding: 10px 2px !important;
+        min-width: 0;
+        max-width: 99vw;
+    }
+}
+
+/* Make sure footer is always visible and fits on mobile */
+#charity-footer {
+    font-size: 1em;
+    padding: 10px 2vw 8px 2vw;
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: 100vw;
+    word-break: break-word;
 }
