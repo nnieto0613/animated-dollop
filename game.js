@@ -1,4 +1,3 @@
-
 // Get DOM elements
 const mainMenu = document.getElementById('main-menu');
 const startBtn = document.getElementById('start-btn');
@@ -212,9 +211,11 @@ function animateDropToSlingshot(callback, scale = 1) {
     const dropAnim = document.createElement('img');
     dropAnim.src = 'img/water_drop.png';
     dropAnim.alt = 'Water Drop';
+    // Always match the size of the drop on the slingshot
+    const dropRadius = Math.floor(24 * scale);
     dropAnim.style.position = 'absolute';
-    dropAnim.style.width = Math.floor(32 * scale) + 'px';
-    dropAnim.style.height = Math.floor(32 * scale) + 'px';
+    dropAnim.style.width = (dropRadius * 2) + 'px';
+    dropAnim.style.height = (dropRadius * 2) + 'px';
     dropAnim.style.zIndex = '1000';
     dropAnim.style.pointerEvents = 'none';
 
@@ -223,8 +224,8 @@ function animateDropToSlingshot(callback, scale = 1) {
     const tubeTopOffset = Math.floor(340 * scale);
     const startX = canvasRect.left + slingshotPoint.x;
     const startY = canvasRect.top + slingshotPoint.y - tubeTopOffset + Math.floor(16 * scale);
-    const endX = canvasRect.left + slingshotPoint.x - Math.floor(8 * scale);
-    const endY = canvasRect.top + slingshotPoint.y - Math.floor(8 * scale);
+    const endX = canvasRect.left + slingshotPoint.x - dropRadius / 1.5;
+    const endY = canvasRect.top + slingshotPoint.y - dropRadius / 1.5;
 
     dropAnim.style.left = `${startX}px`;
     dropAnim.style.top = `${startY}px`;
@@ -796,14 +797,12 @@ function endWaterDropDrag() {
         if (waterDropQueue.length > 0) {
             waterDropQueue.pop();
         }
-        showReloadTube(waterDropQueue.length, slingshotPoint.x, slingshotPoint.y);
-
-        // Animate the next drop falling if any left
+        showReloadTube(waterDropQueue.length, slingshotPoint.x, slingshotPoint.y, getCurrentScale());
         setTimeout(() => {
             if (shotsLeft > 0 && !levelEnded) {
                 animateDropToSlingshot(() => {
-                    createWaterDrop();
-                });
+                    createWaterDrop(getCurrentScale());
+                }, getCurrentScale());
             }
             // If no shots left and monsters are still alive, trigger lose
             if (shotsLeft === 0 && !levelEnded && monsters.length > 0) {
@@ -821,9 +820,20 @@ function endWaterDropDrag() {
     isDragging = false;
 }
 
+// Helper to get the current scale (for reloads)
+function getCurrentScale() {
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+    const scaleX = canvasWidth / BASE_WIDTH;
+    const scaleY = canvasHeight / BASE_HEIGHT;
+    return Math.min(scaleX, scaleY);
+}
+
 // Optional: Update canvas size on window resize and restart game for demo/testing
 window.addEventListener('resize', () => {
     if (gameScreen.style.display === 'block') {
         startGame();
     }
 });
+
+// No changes needed for JS, as the pause and settings buttons were not referenced in logic.
